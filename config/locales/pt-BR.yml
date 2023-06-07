@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    attributes:
+
+      person:
+        name: Nome
+        party_member: Filiado ao Partido
+        electoral_document: Título de Eleitor
+        updated_at: Atualizado em
+        created_at: Criado em
+
+    models:
+      person: Pessoa
+      people: Pessoas
