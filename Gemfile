@@ -75,6 +75,9 @@ group :test do
 end
 
 gem "activeadmin"
+gem "activeadmin_addons"
+gem "ransack"
+
 gem "devise"
 gem 'rails-i18n'
 

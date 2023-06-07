@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_234519) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_122917) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_234519) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "party_roles", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "rg"
@@ -76,8 +83,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_234519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "party_member"
+    t.bigint "party_role_id"
+    t.index ["party_role_id"], name: "index_people_on_party_role_id"
+  end
+
+  create_table "person_party_roles", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "party_role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["party_role_id"], name: "index_person_party_roles_on_party_role_id"
+    t.index ["person_id", "party_role_id"], name: "index_person_party_roles_on_person_id_and_party_role_id", unique: true
+    t.index ["person_id"], name: "index_person_party_roles_on_person_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "people", "party_roles"
+  add_foreign_key "person_party_roles", "party_roles"
+  add_foreign_key "person_party_roles", "people"
 end

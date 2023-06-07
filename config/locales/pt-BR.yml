@@ -8,7 +8,24 @@ pt-BR:
         electoral_document: Título de Eleitor
         updated_at: Atualizado em
         created_at: Criado em
+        party_role_ids: Funções Partidárias
+        party_roles: Funções Partidárias
+        personal_data: Dados Pessoais
+        party_data: Dados do Partido
+
+      party_role:
+        name: Nome
+        description: Descrição
+        updated_at: Atualizado em
+        created_at: Criado em
+
 
     models:
       person: Pessoa
       people: Pessoas
+      party_role: Função Partidária
+      party_roles: Funções Partidárias
+      comment: Comentário
+      comments: Comentários
+      admin_users: Usuários Administrativos
+      admin_user: Usuário Administrativo
